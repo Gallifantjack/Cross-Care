@@ -200,7 +200,7 @@ const TablePage = () => {
       console.log('HERE');
       try {
         const response = await fetch(
-          `http://127.0.0.1:5000/get-sorted-data?category=${selectedCategory}&selectedWindow=${selectedWindow}&sortKey=${sortKey}&sortOrder=${sortOrder}&page=${currentPage}&per_page=${pageSize}&selectedDiseases=${selectedDiseasesString}&dataSource=pile`
+          `https://cryptic-forest-27973-570a247a72c1.herokuapp.com/get-sorted-data?category=${selectedCategory}&selectedWindow=${selectedWindow}&sortKey=${sortKey}&sortOrder=${sortOrder}&page=${currentPage}&per_page=${pageSize}&selectedDiseases=${selectedDiseasesString}&dataSource=pile`
         );
         if (response.ok) {
           const data = await response.json();
@@ -217,7 +217,7 @@ const TablePage = () => {
     } else {
       try {
         const response = await fetch(
-          `http://127.0.0.1:5000/get-sorted-data?category=${selectedCategory}&selectedWindow=${selectedWindow}&sortKey=${sortKey}&sortOrder=${sortOrder}&page=${currentPage}&per_page=${pageSize}&selectedDiseases=${selectedDiseasesString}&dataSource=${dataSource}`
+          `https://cryptic-forest-27973-570a247a72c1.herokuapp.com/get-sorted-data?category=${selectedCategory}&selectedWindow=${selectedWindow}&sortKey=${sortKey}&sortOrder=${sortOrder}&page=${currentPage}&per_page=${pageSize}&selectedDiseases=${selectedDiseasesString}&dataSource=${dataSource}`
         );
         if (response.ok) {
           const data = await response.json();
