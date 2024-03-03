@@ -49,7 +49,7 @@ const DataSourceOptions = {
   Arxiv: 'arxiv',
   Github: 'github',
   Wikipedia: 'wikipedia', // Change the URL to your custom data source endpoint
-  StackExchange: 'stackexchange',
+  StackExchange: 'stackexchange'
 };
 
 const TablePage = () => {
@@ -174,7 +174,7 @@ const TablePage = () => {
   const fetchDiseaseNames = async () => {
     try {
       const response = await fetch(
-        `http://127.0.0.1:5000/get-disease-names?dataSource=${dataSource}`
+        `https://cryptic-forest-27973-570a247a72c1.herokuapp.com/get-disease-names?dataSource=${dataSource}`
       );
       if (response.ok) {
         const names = await response.json();
@@ -197,7 +197,7 @@ const TablePage = () => {
   const fetchSortedData = async () => {
     const selectedDiseasesString = selectedDiseases.join(',');
     if (selectedCategory === DataCategories.TotalCounts) {
-      console.log("HERE")
+      console.log('HERE');
       try {
         const response = await fetch(
           `http://127.0.0.1:5000/get-sorted-data?category=${selectedCategory}&selectedWindow=${selectedWindow}&sortKey=${sortKey}&sortOrder=${sortOrder}&page=${currentPage}&per_page=${pageSize}&selectedDiseases=${selectedDiseasesString}&dataSource=pile`
@@ -214,8 +214,7 @@ const TablePage = () => {
       } catch (error) {
         console.error('Network error:', error);
       }
-    }
-    else{
+    } else {
       try {
         const response = await fetch(
           `http://127.0.0.1:5000/get-sorted-data?category=${selectedCategory}&selectedWindow=${selectedWindow}&sortKey=${sortKey}&sortOrder=${sortOrder}&page=${currentPage}&per_page=${pageSize}&selectedDiseases=${selectedDiseasesString}&dataSource=${dataSource}`
@@ -416,31 +415,35 @@ const TablePage = () => {
                 ))}
               </MultiSelect>
 
-            {/* Window Dropdown */}
-            {selectedCategory !== DataCategories.TotalCounts && <Select
-              value={selectedWindow}
-              onValueChange={setSelectedWindow}
-              style={{ flex: '20%' , marginLeft: '40px'}}
-            >
-              {Object.entries(WindowOptions).map(([key, value]) => (
-                <SelectItem key={key} value={value}>
-                  {key}
-                </SelectItem>
-              ))}
-            </Select>}
+              {/* Window Dropdown */}
+              {selectedCategory !== DataCategories.TotalCounts && (
+                <Select
+                  value={selectedWindow}
+                  onValueChange={setSelectedWindow}
+                  style={{ flex: '20%', marginLeft: '40px' }}
+                >
+                  {Object.entries(WindowOptions).map(([key, value]) => (
+                    <SelectItem key={key} value={value}>
+                      {key}
+                    </SelectItem>
+                  ))}
+                </Select>
+              )}
 
-            {/* Data Source Dropdown */}
-            {selectedCategory !== DataCategories.TotalCounts && <Select
-              value={dataSource}
-              onValueChange={setDataSource}
-              style={{ flex: '20%' , marginLeft: '40px'}}
-            >
-              {Object.entries(DataSourceOptions).map(([key, value]) => (
-                <SelectItem key={key} value={value}>
-                  {key}
-                </SelectItem>
-              ))}
-            </Select>}
+              {/* Data Source Dropdown */}
+              {selectedCategory !== DataCategories.TotalCounts && (
+                <Select
+                  value={dataSource}
+                  onValueChange={setDataSource}
+                  style={{ flex: '20%', marginLeft: '40px' }}
+                >
+                  {Object.entries(DataSourceOptions).map(([key, value]) => (
+                    <SelectItem key={key} value={value}>
+                      {key}
+                    </SelectItem>
+                  ))}
+                </Select>
+              )}
 
               {renderDownloadButton(() => downloadJsonData())}
             </div>

@@ -132,7 +132,7 @@ const ChartPage = () => {
   const fetchDiseaseNames = async () => {
     try {
       const response = await fetch(
-        `http://127.0.0.1:5000/get-disease-names?dataSource=${dataSource}`
+        `https://cryptic-forest-27973-570a247a72c1.herokuapp.com/get-disease-names?dataSource=${dataSource}`
       );
       if (response.ok) {
         const names = await response.json();
